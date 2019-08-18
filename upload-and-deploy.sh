@@ -48,7 +48,7 @@ tar czf "${BUNDLE_PATH}" app.r manifest.json
 
 # Upload the bundle
 # TODO: Make this a v1 path
-UPLOAD=$(curl --silent --show-error -L --max-redirs 0 --fail -X POST -H "Authorization: Key ${CONNECT_API_KEY}" --data-binary @"${BUNDLE_PATH}" "${CONNECT_SERVER}__api__/v1/experimental/content/${APP}/upload")
+UPLOAD=$(curl --silent --show-error -L --max-redirs 0 --fail --verbose -X POST -H "Authorization: Key ${CONNECT_API_KEY}" --data-binary @"${BUNDLE_PATH}" "${CONNECT_SERVER}__api__/v1/experimental/content/${APP}/upload")
 echo "UPLOAD: ${UPLOAD}"
 BUNDLE=$(echo "$UPLOAD" | jq -r .bundle_id)
 echo "Created bundle: $BUNDLE"
